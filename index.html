@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <style>
+            /* color vars */
+
+            /* system fonts */
+
+            body {
+                display: flex;
+                justify-content: center;
+            }
+
+            form {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            label  {
+                margin-bottom: 1em;
+            }
+
+            h1 {
+                font-size: 3em;
+            }
+
+            form, fieldset {
+                width: 100%;
+                display: block;
+                border: none;
+            }
+
+            button {
+                
+            }
+
+            .full-width {
+                width: 100%;
+                display: block;
+            }
+
+            .result-bar {
+                max-height: 3em;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .result-bar p {
+                max-height: 3em;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .container {
+                max-width: 768px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>LinguaTools</h1>
+            <div class="result-bar">
+                <p id="result"></p>
+                <p id="error"></p>
+                <div id="loading"></div>
+            </div>
+            <form id="submission-form">
+                <label class="full-width">
+                    Subject
+                    <input class="full-width" id="subject-prompt"></input>
+                </label>
+                <label class="full-width">
+                    Verb
+                    <input class="full-width" id="verb-prompt"></input>
+                </label>
+                <label class="full-width">
+                    Object
+                    <input class="full-width" id="object-prompt"></input>
+                </label>
+                <fieldset>
+                    <legend>Tense</legend>
+                    <label>
+                        <input type="radio" name="tense" value="windows">
+                        Past
+                    </label>
+                    <label>
+                        <input type="radio" name="tense" value="present">
+                        Preset
+                    </label>
+                    <label>
+                        <input type="radio" name="tense" value="future">
+                        Future
+                    </label>
+                  </fieldset>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <script type="module" src="./js/main.js"></script>
+    </body>
+</html>
