@@ -4,56 +4,86 @@
     <head>
         <style>
             /* color vars */
+            :root {
+                --dark-blue: #000066;
+                --dark-grey-blue: #001247;
+                --robins-egg: #bfcfff;
+                --baby-blue: #809fff;
+                --background: #ebf1f4;
+                --white: #ffffff;
+                --gentle-red: #cc2222;
+                font: 1.2rem "Helvetica";
+            }
 
             /* system fonts */
-
             body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                color: var(--dark-grey-blue);
+                background-color: var(--background);
                 display: flex;
                 justify-content: center;
-            }
-
-            form {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            label  {
-                margin-bottom: 1em;
             }
 
             h1 {
-                font-size: 3em;
+                font-size: 2rem;
+                margin: 0.5rem 2rem;
             }
 
-            form, fieldset {
+            h5 {
+                color: var(--dark-blue);
+                margin: 0.5rem 2rem;
+            }
+
+            fieldset {
                 width: 100%;
                 display: block;
                 border: none;
+                margin: 0 0.5rem;
+            }
+
+            small {
+                width: 100%;
+                font-size: 0.8rem;
+                display: block;
+                color: var(--gentle-red);
+                margin-bottom: 1rem;
+                font-weight: 600;
             }
 
             button {
-                
+                padding: 0.5rem 1rem;
+                color: white;
+                background-color: var(--dark-blue);
+                font-size: 1.2rem;
+                font-weight: 600;
             }
 
-            .full-width {
+            .box {
                 width: 100%;
-                display: block;
+                margin: 0 1rem;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding: 2rem 0;
+                background-color: var(--white);
+                border: var(--dark-blue) 1px solid;
+                border-radius: 3px;
+                box-shadow: 12px 12px 5px 5px var(--baby-blue);
+            }
+
+            #radio-fieldset > label {
+                font-size: 0.8rem;
             }
 
             .result-bar {
-                max-height: 3em;
+                margin-bottom: 2rem;
                 width: 100%;
-                display: flex;
                 justify-content: center;
             }
 
-            .result-bar p {
-                max-height: 3em;
-                width: 100%;
-                display: flex;
-                justify-content: center;
+            .full-width {
+                width: calc(100% - 5px);
+                display: block;
             }
 
             .container {
@@ -62,30 +92,63 @@
                 flex-wrap: wrap;
                 justify-content: center;
             }
+
+            .hidden {
+                visibility: hidden;
+            }
+
+            .display-none {
+                display: none;
+            }
+
+            .italics {
+                font-style: italic;
+                font-weight: 300;
+            }
+
+            #text-fieldset > label > input {
+                height: 1.5rem;
+                border-color: darkgrey;
+            }
+
+            #submission-error {
+                color: var(--gentle-red);
+            }
+
+            #submission-result {
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
         </style>
     </head>
     <body>
         <div class="container">
             <h1>LinguaTools</h1>
-            <div class="result-bar">
-                <p id="result"></p>
-                <p id="error"></p>
-                <div id="loading"></div>
+            <h5>Learn English Sentence Structure by creating your sentence below!</h5>
+            <div id="result-box" class="box result-bar display-none">
+                <p id="submission-result"></p>
+                <p id="submission-error" class="display-none">Fix your errors below and try again</p>
+                <p id="loading-text" class="italics display-none">Loading...</p>
             </div>
-            <form id="submission-form">
-                <label class="full-width">
-                    Subject
-                    <input class="full-width" id="subject-prompt"></input>
-                </label>
-                <label class="full-width">
-                    Verb
-                    <input class="full-width" id="verb-prompt"></input>
-                </label>
-                <label class="full-width">
-                    Object
-                    <input class="full-width" id="object-prompt"></input>
-                </label>
-                <fieldset>
+            <form id="submission-form" class="box">
+                <fieldset id="text-fieldset">
+                    <label class="full-width">
+                        Subject
+                        <input class="full-width" id="subject-prompt"></input>
+                    </label>
+                    <small id="subject-small" class="small-text hidden">Subject must not be empty.</small>
+                    <label class="full-width">
+                        Verb
+                        <input class="full-width" id="verb-prompt"></input>
+                    </label>
+                    <small id="verb-small" class="small-text hidden">Verb must not be empty.</small>
+                    <label class="full-width">
+                        Object
+                        <input class="full-width" id="object-prompt"></input>
+                    </label>
+                    <small id="object-small" class="small-text hidden">Object must not be empty.</small>
+                </fieldset>
+                <fieldset id="radio-fieldset">
                     <legend>Tense</legend>
                     <label>
                         <input type="radio" name="tense" value="windows">
@@ -93,12 +156,13 @@
                     </label>
                     <label>
                         <input type="radio" name="tense" value="present">
-                        Preset
+                        Present
                     </label>
                     <label>
                         <input type="radio" name="tense" value="future">
                         Future
                     </label>
+                    <small id="tense-small" class="small-text hidden">At least one tense must be selected.</small>
                   </fieldset>
                 <button type="submit">Submit</button>
             </form>
