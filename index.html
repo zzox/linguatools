@@ -71,6 +71,11 @@
                 box-shadow: 12px 12px 5px 5px var(--baby-blue);
             }
 
+            #radio-fieldset {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
             #radio-fieldset > label {
                 font-size: 0.8rem;
             }
@@ -119,6 +124,10 @@
                 font-size: 1.5rem;
                 font-weight: 600;
             }
+
+            #result-box {
+                padding: 0.5rem;
+            }
         </style>
     </head>
     <body>
@@ -163,7 +172,22 @@
                         Future
                     </label>
                     <small id="tense-small" class="small-text hidden">At least one tense must be selected.</small>
-                  </fieldset>
+                </fieldset>
+                <fieldset id="radio-fieldset">
+                    <legend>Sentence Type (Optional)</legend>
+                    <label>
+                        <input type="radio" name="type" value="yesno">
+                        Yes/No
+                    </label>
+                    <label>
+                        <input type="radio" name="type" value="whatobj">
+                        WH-Question Object
+                    </label>
+                    <label>
+                        <input type="radio" name="type" value="whosub">
+                        WH-Question Subject
+                    </label>
+                </fieldset>
                 <button type="submit">Submit</button>
             </form>
         </div>

@@ -51,12 +51,16 @@ import { getSentence } from './requests.js'
                 handleErrors('tense is null.')
                 loadingText.classList.add('display-none')
                 errorField.classList.remove('display-none')
+                resultBox.scrollIntoView({ behavior: 'smooth' })
                 return
             }
 
-            const response = await getSentence(subject.value, verb.value, object.value, tense.value)
+            const type = document.querySelector('input[name="type"]:checked')
+
+            const response = await getSentence(subject.value, verb.value, object.value, tense.value, type && type.value)
             const result = await response.json()
 
+            resultBox.scrollIntoView({ behavior: 'smooth' })
             loadingText.classList.add('display-none')
             if (result.result === 'OK') {
                 resultField.classList.remove('display-none')
